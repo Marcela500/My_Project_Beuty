@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* 
+font-family: 'Oswald', sans-serif;
+font-family: 'Poppins', sans-serif;
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f2f2f2;
+  color: #111111;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  min-height: 88vh;
+  background-color: #F5F5F5;
+  padding: 70px 20px;
+  flex-direction: column;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 25px;
+  color: #111111;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.menu .navbar ul li {
+  position: relative;
+  float: left;
+}
+
+.menu .navbar ul li a {
+  font-size: 18px;
+  padding: 10px 20px;
+  color: #111111;
+  display: block;
+}
+
+#menu {
+  display: none;
+}
+
+.menu-icono {
+  width: 25px;
+}
+
+.menu label {
+  cursor: pointer;
+  display: none;
+}
+
+.submenu {
+  position: relative;
+}
+
+.submenu #carrito {
+  display: none;
+}
+
+.submenu:hover #carrito {
+  display: block;
+  position: absolute;
+  right: 0;
+  backdrop-filter: blur(10px);
+  top: 100%;
+  z-index: 1;
+  background-color: #4E485076;
+  padding: 20px;
+  min-width: 400px;
+}
+
+table {
+  width: 100%;
+}
+
+th, td {
+  color: #FFFFFF;
+}
+
+.borrar {
+  background-color: #111111;
+  border-radius: 50%;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  padding: 20px;
+}
+
+.header-img {
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.header-txt {
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.header-txt h1 {
+  font-size: 60px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #111111;
+  font-family: 'Oswald', sans-serif;
+  margin-bottom: 15px;
+}
+
+.header-txt p {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.bn-1 {
+  display: inline-block;
+  padding: 11px 25px;
+  background-color: #111111;
+  color: #FFFFFF;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bn-1:hover {
+  background-color: #333333;
+}
+
+.ofert {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.ofert-1 {
+  display: flex;
+  align-items: center;
+  flex-basis: calc(33.3% - 15px);
+  background-color: #F5F5F5;
+  padding: 35px;
+  margin-bottom: 30px;
+}
+
+.ofert-img {
+  flex-basis: 50%;
+  margin-right: 15px;
+}
+
+.ofert-img img {
+  width: 250px;
+}
+
+.ofert-txt {
+  flex-basis: 50%;
+  text-align: center;
+}
+
+.ofert-txt h3 {
+  color: #111111;
+  font-family: 'Oswald', sans-serif;
+  font-size: 25px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.btn-2 {
+  display: inline-block;
+  padding: 7px 10px;
+  background-color: #111111;
+  color: #FFFFFF;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-2:hover {
+  background-color: #333333;
+}
+
+.products {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.products h2 {
+  color: #111111;
+  font-family: 'Oswald', sans-serif;
+  font-size: 50px;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+
+.product-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajuste para que los productos se distribuyan automáticamente en múltiples líneas */
+  gap: 50px;
+  justify-items: center; /* Centra los elementos en el contenedor */
+}
+
+.product {
+  text-align: center;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+  width: 250px;
+  height: 370px;
+  margin-bottom: 20px;
+}
+
+.product h3 {
+  font-size: 20px;
+  color: #111111;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.product p, .precio {
+  font-size: 16px;
+  color: #111111;
+  margin-bottom: 15px;
+}
+
+.precio {
+  font-weight: 800;
+}
+
+.icons {
+  padding: 50px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.icon-1 {
+  flex-basis: calc(33.3% - 30px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+  background-color: #F5F5F5;
+  margin-bottom: 30px;
+}
+
+.icon-txt h3 {
+  font-size: 20px;
+  color: #111111;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+
+.icon-txt p {
+  font-size: 16px;
+  color: #111111;
+}
+
+.blog {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 20px;
+  flex-wrap: wrap;
+}
+
+.blog-1 {
+  flex-basis: calc(33.3% - 30px);
+  margin-bottom: 30px;
+}
+
+.blog-1 img {
+  margin-bottom: 20px;
+}
+
+.blog-1 h3 {
+  font-size: 20px;
+  color: #111111;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.blog-1 p {
+  font-size: 16px;
+  color: #111111;
+}
+
+.footer {
+  padding: 50px 20px;
+  background-color: #111111;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.link h3 {
+  font-size: 18px;
+  color: #FFFFFF;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.link a {
+  font-size: 16px;
+  color: #DCDCDC;
+  display: block;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 991px) {
+  .menu {
+    padding: 20px;
+  }
+
+  .menu label {
+    display: block;
+  }
+
+  .menu .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #181818;
+    display: none;
+    flex-direction: column;
+  }
+
+  .menu .navbar ul li {
+    width: 100%;
+  }
+
+  .menu .navbar ul li a {
+    color: #FFFFFF;
+  }
+
+  #menu:checked ~ .navbar {
+    display: flex;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .submenu:hover #carrito {
+    min-width: 100%;
+  }
+
+  .header {
+    min-height: 50vh;
+  }
+
+  .header-content {
+    padding: 50px 20px;
+    flex-direction: column;
+  }
+
+  .header-img {
+    display: none;
+  }
+
+  .header-txt {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .header-txt h1 {
+    font-size: 45px;
+  }
+
+  .header-txt p {
+    font-size: 18px;
+  }
+
+  .ofert-1 {
+    flex-basis: 100%;
+  }
+
+  .product-content {
+    grid-template-columns: 1fr;
+  }
+
+  .icon-1, .blog-1 {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu .navbar ul li {
+    float: none;
+    text-align: center;
+  }
+
+  .header-content {
+    padding: 20px 10px;
+  }
+
+  .header-txt h1 {
+    font-size: 35px;
+  }
+
+  .header-txt p {
+    font-size: 16px;
+  }
+
+  .product-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo">logo</a>
+            <input type="checkbox"id="menu"/>
+            <label for="menu">
+                <img src="images/menu.png" class="menu-icono" alt="menu">
+            </label> 
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Categorias</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="login.jsp">Iniciar Sesión</a></li> <!-- Enlace a la página de inicio de sesión -->
+                </ul>
+            </nav>
+            <div>
+                <ul>
+                    <li class="submenu">
+                        <img src="images/car.svg" id="img-carrito" alt="carrito">
+                        <div id="carrito">
+                            <table id="lista-carrito">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th></th> 
+                                    </tr>
+                                </thead>
+                            </table>
+                            <a href="#" id="Vaciar-carrito" class="btn-2">Vaciar Carrito</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div> 
+        <div class="header-content container">
+            <div class="header-img">
+                <img src="images/right.png" alt="">
+            </div>
+            <div class="header-txt">
+                <h1>Ofertas especiales</h1>
+                <p>estrena las mejores prendas</p>
+                <a href="#" class="btn-1">informacion</a>
+            </div>
+        </div> 
+    </header>
+    
+    <section class="ofert container">
+        <div class="ofert-1">
+            <div class="ofert-2">
+                <img src="images/f1.png" alt="">
+            </div>
+            <div class="ofert-text">
+                <h3>Producto 1</h3>
+                <a href="#" class="btn-2">Información</a>
+            </div>
+        </div>
+
+        <div class="ofert-1">
+            <div class="ofert-2">
+                <img src="images/f2.png" alt="">
+            </div>
+            <div class="ofert-text">
+                <h3>Producto 2</h3>
+                <a href="#" class="btn-2">Información</a>
+            </div>
+        </div>
+
+        <div class="ofert-1">
+            <div class="ofert-2">
+                <img src="images/f3.png" alt="">
+            </div>
+            <div class="ofert-text">
+                <h3>Producto 3</h3>
+                <a href="#" class="btn-2">Información</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="products container" id="lista-1">
+        <h2>Productos</h2>
+        <div class="product-content">
+            <div class="product">
+                <img src="images/1.png" alt="">
+                <div class="product-txt">
+                    <h3>Elis</h3>
+                    <p>Calidad Premium</p>
+                    <p class="precio">$200</p>
+                    <a href="#" class="agregar-carrito btn-2" data-id="1">Agregar al carrito</a>
+                </div>
+            </div>
+
+            <!-- Aquí irían los demás productos -->
+
+        </div>
+    </main>
+
+    <section class="icons container">
+        <div class="icon-1">
+            <img src="images/i1.svg" alt="">
+        </div>
+        <div class="icon-text">
+            <h3>Descripción</h3>
+            <p>
+                Información adicional sobre tus servicios o productos.
+            </p>
+        </div>
+
+        <div class="icon-1">
+            <img src="images/i2.svg" alt="">
+        </div>
+        <div class="icon-text">
+            <h3>Descripción</h3>
+            <p>
+                Información adicional sobre tus servicios o productos.
+            </p>
+        </div>
+
+        <div class="icon-1">
+            <img src="images/i3.svg" alt="">
+        </div>
+        <div class="icon-text">
+            <h3>Descripción</h3>
+            <p>
+                Información adicional sobre tus servicios o productos.
+            </p>
+        </div>
+    </section>
+
+    <section class="blog container">
+        <div class="blog-1">
+            <img src="images/b1.jpg" alt="">
+            <h3>Blog 1</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar consequat bibendum. 
+                Integer sodales lacus leo, vitae hendrerit magna sollicitudin feugiat. Nulla et libero varius, 
+                volutpat purus eu, lobortis mi. Nulla pharetra eleifend massa. Vestibulum ante ipsum primis 
+                in faucibus orci luctus et ultrices posuere cubilia curae; Fusce malesuada magna condimentum 
+                ante imperdiet, eget bibendum tortor rhoncus. Donec consequat porta massa ac pellentesque. 
+            </p>
+        </div>
+
+        <div class="blog-1">
+            <img src="images/b2.jpg" alt="">
+            <h3>Blog 2</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar consequat bibendum. 
+                Integer sodales lacus leo, vitae hendrerit magna sollicitudin feugiat. Nulla et libero varius, 
+                volutpat purus eu, lobortis mi. Nulla pharetra eleifend massa. Vestibulum ante ipsum primis 
+                in faucibus orci luctus et ultrices posuere cubilia curae; Fusce malesuada magna condimentum 
+                ante imperdiet, eget bibendum tortor rhoncus. Donec consequat porta massa ac pellentesque. 
+            </p>
+        </div>
+
+        <div class="blog-1">
+            <img src="images/b3.jpg" alt="">
+            <h3>Blog 3</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar consequat bibendum. 
+                Integer sodales lacus leo, vitae hendrerit magna sollicitudin feugiat. Nulla et libero varius, 
+                volutpat purus eu, lobortis mi. Nulla pharetra eleifend massa. Vestibulum ante ipsum primis 
+                in faucibus orci luctus et ultrices posuere cubilia curae; Fusce malesuada magna condimentum 
+                ante imperdiet, eget bibendum tortor rhoncus. Donec consequat porta massa ac pellentesque. 
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="link">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="#">Enlace 1</a></li>
+                    <li><a href="#">Enlace 2</a></li>
+                    <li><a href="#">Enlace 3</a></li>
+                    <li><a href="#">Enlace 4</a></li>
+                </ul>
+            </div>
+
+            <div class="link">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="#">Enlace 1</a></li>
+                    <li><a href="#">Enlace 2</a></li>
+                    <li><a href="#">Enlace 3</a></li>
+                    <li><a href="#">Enlace 4</a></li>
+                </ul>
+            </div>
+
+            <div class="link">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="#">Enlace 1</a></li>
+                    <li><a href="#">Enlace 2</a></li>
+                    <li><a href="#">Enlace 3</a></li>
+                    <li><a href="#">Enlace 4</a></li>
+                </ul>
+            </div>
+
+            <div class="link">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="#">Enlace 1</a></li>
+                    <li><a href="#">Enlace 2</a></li>
+                    <li><a href="#">Enlace 3</a></li>
+                    <li><a href="#">Enlace 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+  <!-- Define Persistence Unit -->
+  <persistence-unit name="my_persistence_unit">
+    <class>com.mycompany.mi_proyecto_beuty.models.DetallesPedido</class>
+    <class>com.mycompany.mi_proyecto_beuty.models.Productos</class>
+    <class>com.mycompany.mi_proyecto_beuty.models.MetodosPagos</class>
+    <class>com.mycompany.mi_proyecto_beuty.models.Valoraciones</class>
+    <class>com.mycompany.mi_proyecto_beuty.models.Pedidos</class>
+    <class>com.mycompany.mi_proyecto_beuty.models.HistorialCompras</class>
+    <class>com.mycompany.mi_proyecto_beuty.models.Usuarios</class>
+    <class>com.mycompany.mi_proyecto_beuty.servicies.NewEntity</class>
+    <class>com.mycompany.mi_proyecto_beuty.services.DetallesPedidoService</class>
+    <class>com.mycompany.mi_proyecto_beuty.services.HistorialComprasService</class>
+    <class>com.mycompany.mi_proyecto_beuty.services.MetodosPagosService</class>
+    <class>com.mycompany.mi_proyecto_beuty.services.PedidosService</class>
+    <class>com.mycompany.mi_proyecto_beuty.services.ProductosService</class>
+    <class>com.mycompany.mi_proyecto_beuty.services.UsuariosService</class>
+    <class>com.mycompany.mi_proyecto_beuty.services.ValoracionesService</class>
+  </persistence-unit>
+</persistence>
