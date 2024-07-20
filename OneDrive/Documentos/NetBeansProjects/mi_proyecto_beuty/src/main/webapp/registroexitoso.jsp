@@ -1,6 +1,6 @@
 <%-- 
-    Document   : error
-    Created on : 11/07/2024, 6:22:40 p. m.
+    Document   : registroexitoso
+    Created on : 16/07/2024, 4:46:17 p. m.
     Author     : lauma
 --%>
 
@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error en el Registro</title>
+    <title>Registro Exitoso</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,7 +44,7 @@
 
         p {
             font-size: 16px;
-            color: red;
+            color: green;
         }
 
         a {
@@ -72,9 +72,10 @@
 <body>
     <div class="container">
         <img src="images/logo cuadrado.png" alt="Logo de la empresa" class="logo">
-        <h2>Error en el Registro</h2>
-        <p>El correo electrónico ya está registrado.</p>
-        <p><a href="registro.jsp">Volver al registro</a></p>
+        <h2>Registro Exitoso</h2>
+        <p>Usuario registrado correctamente.</p>
+        <p><a href="login.jsp">Iniciar sesión</a></p>
     </div>
 </body>
 </html>
+

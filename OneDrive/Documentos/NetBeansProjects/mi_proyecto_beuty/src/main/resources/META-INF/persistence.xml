@@ -3,7 +3,6 @@
   <!-- Define Persistence Unit -->
   <persistence-unit name="my_persistence_unit">
     <class>com.mycompany.mi_proyecto_beuty.models.DetallesPedido</class>
-    <class>com.mycompany.mi_proyecto_beuty.models.Productos</class>
     <class>com.mycompany.mi_proyecto_beuty.models.MetodosPagos</class>
     <class>com.mycompany.mi_proyecto_beuty.models.Valoraciones</class>
     <class>com.mycompany.mi_proyecto_beuty.models.Pedidos</class>
@@ -17,5 +16,7 @@
     <class>com.mycompany.mi_proyecto_beuty.services.ProductosService</class>
     <class>com.mycompany.mi_proyecto_beuty.services.UsuariosService</class>
     <class>com.mycompany.mi_proyecto_beuty.services.ValoracionesService</class>
+    <class>com.mycompany.mi_proyecto_beuty.models.Producto</class>
+    <class>com.mycompany.dao.ProductoDAO</class>
   </persistence-unit>
 </persistence>

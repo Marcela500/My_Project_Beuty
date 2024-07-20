@@ -1,6 +1,6 @@
 package com.mycompany.mi_proyecto_beuty.controllers;
 
-import com.mycompany.mi_proyecto_beuty.models.Productos;
+import com.mycompany.mi_proyecto_beuty.models.Producto;
 import com.mycompany.mi_proyecto_beuty.repositories.ProductosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +17,13 @@ public class ProductosController {
     private ProductosRepository productosRepository;
 
     @GetMapping
-    public List<Productos> getAllProductos() {
+    public List<Producto> getAllProductos() {
         return productosRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Productos> getProductoById(@PathVariable Integer id) {
-        Optional<Productos> producto = productosRepository.findById(id);
+    public ResponseEntity<Producto> getProductoById(@PathVariable Integer id) {
+        Optional<Producto> producto = productosRepository.findById(id);
         if (producto.isPresent()) {
             return ResponseEntity.ok(producto.get());
         } else {
@@ -32,15 +32,15 @@ public class ProductosController {
     }
 
     @PostMapping
-    public Productos createProducto(@RequestBody Productos producto) {
+    public Producto createProducto(@RequestBody Producto producto) {
         return productosRepository.save(producto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Productos> updateProducto(@PathVariable Integer id, @RequestBody Productos productoDetails) {
-        Optional<Productos> producto = productosRepository.findById(id);
+    public ResponseEntity<Producto> updateProducto(@PathVariable Integer id, @RequestBody Producto productoDetails) {
+        Optional<Producto> producto = productosRepository.findById(id);
         if (producto.isPresent()) {
-            Productos updatedProducto = producto.get();
+            Producto updatedProducto = producto.get();
             updatedProducto.setNombre(productoDetails.getNombre());
             updatedProducto.setMarca(productoDetails.getMarca());
             updatedProducto.setPrecio(productoDetails.getPrecio());
@@ -56,7 +56,7 @@ public class ProductosController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProducto(@PathVariable Integer id) {
-        Optional<Productos> producto = productosRepository.findById(id);
+        Optional<Producto> producto = productosRepository.findById(id);
         if (producto.isPresent()) {
             productosRepository.delete(producto.get());
             return ResponseEntity.noContent().build();

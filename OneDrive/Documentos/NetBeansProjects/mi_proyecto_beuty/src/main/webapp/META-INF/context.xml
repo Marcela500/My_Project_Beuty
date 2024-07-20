@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/mi_proyecto_beuty"/>
+<Context path="/mi_proyecto_beuty">
+
+    <!-- Configuración del recurso JDBC -->
+    <Resource name="jdbc/mitienda"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="100"
+              maxIdle="30"
+              maxWaitMillis="10000"
+              username="root"
+              password="Lupita055065790"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/mitienda?useSSL=false&amp;serverTimezone=UTC"/>
+
+</Context>

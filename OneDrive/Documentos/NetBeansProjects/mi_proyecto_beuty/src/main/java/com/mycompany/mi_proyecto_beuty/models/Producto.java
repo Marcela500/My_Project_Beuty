@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "productos")
-public class Productos {
+public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -15,6 +15,30 @@ public class Productos {
     private String color;
     private String tipo;
     private String descripcion;
+
+    // Constructor vacío
+    public Producto() {}
+
+    // Constructor con todos los campos
+    public Producto(int id, String nombre, String marca, double precio, String color, String tipo, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.color = color;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+    }
+
+    // Constructor sin id (para inserciones)
+    public Producto(String nombre, String marca, double precio, String color, String tipo, String descripcion) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.color = color;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+    }
 
     // Getters y Setters
     public int getId() {

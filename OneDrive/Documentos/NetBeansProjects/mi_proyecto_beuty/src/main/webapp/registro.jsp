@@ -1,9 +1,3 @@
-<%-- 
-    Document   : registro
-    Created on : 11/07/2024, 5:10:45 p. m.
-    Author     : lauma
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -157,7 +151,7 @@
     <div class="container">
         <!-- Logo de la empresa -->
         <img src="images/logo cuadrado.png" alt="Logo de la empresa" class="logo">
-        <form id="registerForm" action="RegistrarUsuarioServlet" method="POST">
+        <form id="registerForm" action="registro" method="POST">
             <h2>Regístrate</h2>
             <div class="input-group">
                 <label for="nombre">Nombre</label>
@@ -175,11 +169,23 @@
                 <label for="direccion">Dirección</label>
                 <input type="text" id="direccion" name="direccion" required>
             </div>
+            <div class="input-group">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+            </div>
             <div class="input-group terms">
                 <input type="checkbox" id="terms" required>
                 <label for="terms">Acepto los términos y condiciones</label>
             </div>
             <button type="submit">Registrarse</button>
+            
+            <c:if test="${not empty errorMessage}">
+                <div class="error-message">${errorMessage}</div>
+            </c:if>
+            <c:if test="${not empty successMessage}">
+                <div class="success-message">${successMessage}</div>
+            </c:if>
+
             <div class="links">
                 <p class="already-have-account">¿Ya tienes una cuenta? <a href="login.jsp">Inicia sesión</a></p>
             </div>

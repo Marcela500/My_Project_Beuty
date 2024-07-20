@@ -1,4 +1,4 @@
-package Servletcom.mycompany.mi_proyecto_beuty.servlets;
+package com.mycompany.mi_proyecto_beuty.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
