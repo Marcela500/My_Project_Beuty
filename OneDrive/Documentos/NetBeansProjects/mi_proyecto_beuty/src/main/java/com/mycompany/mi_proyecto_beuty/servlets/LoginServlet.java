@@ -1,7 +1,6 @@
 package com.mycompany.mi_proyecto_beuty.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,10 +10,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
@@ -35,32 +36,28 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        // Obtiene los parámetros del formulario de inicio de sesión
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Resultado del inicio de sesión</title>");
-            out.println("</head>");
-            out.println("<body>");
+        HttpSession session = request.getSession();
 
-            // Verifica las credenciales
-            if (authenticateUser(email, password)) {
-                // Guarda el correo electrónico del usuario en la sesión
-                request.getSession().setAttribute("user", email);
-                // Redirige a la página principal después del inicio de sesión exitoso
-                response.sendRedirect("index.jsp");
+        try {
+            String role = authenticateUser(email, password);
+            if (role != null) {
+                session.setAttribute("user", email);
+                session.setAttribute("role", role); // Guarda el rol del usuario en la sesión
+
+                if ("admin".equals(role)) {
+                    response.sendRedirect("admin.jsp");
+                } else {
+                    response.sendRedirect("index.html");
+                }
             } else {
-                // Muestra un mensaje de error si las credenciales son incorrectas
-                out.println("<h1>Error: Credenciales incorrectas</h1>");
-                out.println("<p><a href='login.jsp'>Volver al inicio de sesión</a></p>");
+                response.sendRedirect("error.jsp");
             }
-
-            out.println("</body>");
-            out.println("</html>");
+        } catch (Exception e) {
+            // En caso de excepción, redirige a la página de error
+            response.sendRedirect("error.jsp");
         }
     }
 
@@ -81,20 +78,24 @@ public class LoginServlet extends HttpServlet {
         return "Servlet para autenticar usuarios";
     }
 
-    private boolean authenticateUser(String email, String password) {
-        try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT contrasena FROM usuarios WHERE correo_electronico = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+    private String authenticateUser(String email, String password) {
+        String role = null;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT contrasena, rol FROM usuarios WHERE correo_electronico = ?")) {
             pstmt.setString(1, email);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                String storedPassword = rs.getString("contrasena");
-                return storedPassword.equals(password);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    String storedPasswordHash = rs.getString("contrasena");
+                    role = rs.getString("rol");
+                    if (BCrypt.checkpw(password, storedPasswordHash)) {
+                        return role;
+                    }
+                }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
+            // Consider logging the exception or handling it appropriately
         }
-        return false;
+        return role;
     }
 }
